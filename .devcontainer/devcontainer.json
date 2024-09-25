@@ -1,0 +1,36 @@
+{
+  "name": "devcontainer-node-blockchain",
+  "image": "mcr.microsoft.com/devcontainers/java:1.1.13-21-jdk-bullseye",
+  "customizations": {
+      "vscode": {
+          "extensions": [
+              "dbaeumer.vscode-eslint",
+              "nomicfoundation.hardhat-solidity",
+              "esbenp.prettier-vscode",
+              "yzhang.markdown-all-in-one",
+              "trabpukcip.vscode-npm-scripts",
+              "Angular.ng-template",
+              "codeandstuff.package-json-upgrade"
+          ]
+      }
+  },
+  "containerEnv": {
+      "HTTP_PROXY": "${localEnv:http_proxy}",
+      "HTTPS_PROXY": "${localEnv:http_proxy}",
+      "http_proxy": "${localEnv:http_proxy}",
+      "https_proxy": "${localEnv:https_proxy}"
+  },
+  "secrets": {},
+  "features": {
+      "ghcr.io/devcontainers/features/common-utils": {
+          "installOhMyZsh": true
+      }
+  },
+  "runArgs": [
+      "--network=host"
+  ], 
+  "forwardPorts": [
+      3000
+  ]
+//   "postCreateCommand": "./install_nvm.sh"
+} 

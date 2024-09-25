@@ -1,0 +1,8 @@
+{
+  "blockchain": {
+    "nodes": {
+      "generate": true,
+      "count": 1
+    }
+  }
+}

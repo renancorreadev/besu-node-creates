@@ -1,0 +1,179 @@
+version: "3"
+services:
+  config-network:
+    image: besu-image
+    build:
+      context: .
+    container_name: config-network
+    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./scripts:/app
+      - ./genesis.json:/opt/besu/genesis.json
+      - ./data:/data
+    env_file:
+      - .env
+    environment:
+      - BESU_GENESIS_FILE=/opt/besu/genesis.json
+      - NAME_NODE=config-network
+    command: bash configNetwork.sh
+  node1:
+    image: besu-image
+    build:
+      context: .
+    container_name: node1
+    restart: always
+    ports:
+      - 32945:32945
+      - 22945:22945
+      - 62945:62945
+      - 62945:62945/udp
+    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./scripts:/app
+      - ./data/node1:/var/lib/besu
+      - ./genesis.json:/opt/besu/genesis.json
+    env_file:
+      - .env
+    depends_on:
+      - config-network
+    environment:
+      - BESU_DATA_PATH=/var/lib/besu
+      - BESU_GENESIS_FILE=/opt/besu/genesis.json
+      - BESU_NETWORK_ID=1337
+      - BESU_P2P_PORT=62945
+      - BESU_RPC_HTTP_ENABLED=true
+      - BESU_RPC_HTTP_HOST=0.0.0.0
+      - BESU_RPC_HTTP_PORT=32945
+      - BESU_RPC_WS_PORT=22945
+      - BESU_RPC_WS_ENABLED=true
+      - BESU_RPC_WS_HOST=0.0.0.0
+      - BESU_ENGINE_HOST_ALLOWLIST=*
+      - BESU_HOST_ALLOWLIST=*
+      - BESU_RPC_HTTP_CORS_ORIGINS=all
+      - BESU_RPC_HTTP_API=ETH,NET,IBFT,PERM,ADMIN,TRACE
+      - NAME_NODE=node1
+    command: bash run.sh
+  node2:
+    image: besu-image
+    build:
+      context: .
+    container_name: node2
+    restart: always
+    ports:
+      - 32946:32946
+      - 22946:22946
+      - 62946:62946
+      - 62946:62946/udp
+    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./scripts:/app
+      - ./data/node2:/var/lib/besu
+      - ./genesis.json:/opt/besu/genesis.json
+    env_file:
+      - .env
+    depends_on:
+      - config-network
+    environment:
+      - BESU_DATA_PATH=/var/lib/besu
+      - BESU_GENESIS_FILE=/opt/besu/genesis.json
+      - BESU_NETWORK_ID=1337
+      - BESU_P2P_PORT=62946
+      - BESU_RPC_HTTP_ENABLED=true
+      - BESU_RPC_HTTP_HOST=0.0.0.0
+      - BESU_RPC_HTTP_PORT=32946
+      - BESU_RPC_WS_PORT=22946
+      - BESU_RPC_HTTP_API=ETH,NET,IBFT,PERM,ADMIN,TRACE
+      - BESU_ENGINE_HOST_ALLOWLIST=*
+      - BESU_HOST_ALLOWLIST=*
+      - BESU_RPC_HTTP_CORS_ORIGINS=all
+      - BESU_RPC_WS_ENABLED=true
+      - BESU_RPC_WS_HOST=0.0.0.0
+      - NAME_NODE=node2
+      - GENERATE_ENODE=true
+    command: bash run.sh
+  node3:
+    image: besu-image
+    build:
+      context: .
+    container_name: node3
+    restart: always
+    ports:
+      - 32947:32947
+      - 22947:22947
+      - 62947:62947
+      - 62947:62947/udp
+    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./scripts:/app
+      - ./data/node3:/var/lib/besu
+      - ./genesis.json:/opt/besu/genesis.json
+    env_file:
+      - .env
+    depends_on:
+      - config-network
+    environment:
+      - BESU_DATA_PATH=/var/lib/besu
+      - BESU_GENESIS_FILE=/opt/besu/genesis.json
+      - BESU_NETWORK_ID=1337
+      - BESU_P2P_PORT=62947
+      - BESU_RPC_HTTP_ENABLED=true
+      - BESU_RPC_HTTP_HOST=0.0.0.0
+      - BESU_RPC_HTTP_PORT=32947
+      - BESU_RPC_WS_PORT=22947
+      - BESU_RPC_HTTP_API=ETH,NET,IBFT,PERM,ADMIN,TRACE
+      - BESU_ENGINE_HOST_ALLOWLIST=*
+      - BESU_HOST_ALLOWLIST=*
+      - BESU_RPC_HTTP_CORS_ORIGINS=all
+      - BESU_RPC_WS_ENABLED=true
+      - BESU_RPC_WS_HOST=0.0.0.0
+      - NAME_NODE=node3
+      - GENERATE_ENODE=true
+    command: bash run.sh
+  node4:
+    image: besu-image
+    build:
+      context: .
+    container_name: node4
+    restart: always
+    ports:
+      - 32948:32948
+      - 22948:22948
+      - 62948:62948
+      - 62948:62948/udp
+    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./scripts:/app
+      - ./data/node4:/var/lib/besu
+      - ./genesis.json:/opt/besu/genesis.json
+    env_file:
+      - .env
+    depends_on:
+      - config-network
+    environment:
+      - BESU_DATA_PATH=/var/lib/besu
+      - BESU_GENESIS_FILE=/opt/besu/genesis.json
+      - BESU_NETWORK_ID=1337
+      - BESU_P2P_PORT=62948
+      - BESU_RPC_HTTP_ENABLED=true
+      - BESU_RPC_HTTP_HOST=0.0.0.0
+      - BESU_RPC_HTTP_PORT=32948
+      - BESU_RPC_WS_PORT=22948
+      - BESU_RPC_HTTP_API=ETH,NET,IBFT,PERM,ADMIN,TRACE
+      - BESU_ENGINE_HOST_ALLOWLIST=*
+      - BESU_HOST_ALLOWLIST=*
+      - BESU_RPC_HTTP_CORS_ORIGINS=all
+      - BESU_RPC_WS_ENABLED=true
+      - BESU_RPC_WS_HOST=0.0.0.0
+      - NAME_NODE=node4
+      - GENERATE_ENODE=true
+    command: bash run.sh
