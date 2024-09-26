@@ -3,6 +3,20 @@
 Este projeto tem como objetivo descrever as etapas para o processo de execução de uma rede [Hperleadge Besu](https://besu.hyperledger.org/en/stable/) utlizando o protocolo de consenso [IBFT 2.0](https://besu.hyperledger.org/en/stable/private-networks/how-to/configure/consensus/ibft/?h=ibft+config)
 
 
+# comandos uteis 
+
+### Montar a imagem
+```sh
+docker build . -t besu-infra --network=host
+```
+
+### verificar a imagem
+```sh
+docker build . -t besu-infra --network=host
+```
+
+
+
 ### Versions
 -  `Docker 23.0.1`
 -  `Docker Compose 2.15.1`

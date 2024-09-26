@@ -1,6 +1,6 @@
 {
   "name": "devcontainer-node-blockchain",
-  "image": "mcr.microsoft.com/devcontainers/java:1.1.13-21-jdk-bullseye",
+  "image": "besu-infra",
   "customizations": {
       "vscode": {
           "extensions": [

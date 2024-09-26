@@ -1,7 +1,7 @@
 version: "3"
 services:
   config-network:
-    image: besu-image
+    image: besu-infra
     build:
       context: .
     container_name: config-network
@@ -19,7 +19,7 @@ services:
       - NAME_NODE=config-network
     command: bash configNetwork.sh
   node1:
-    image: besu-image
+    image: besu-infra
     build:
       context: .
     container_name: node1
@@ -58,7 +58,7 @@ services:
       - NAME_NODE=node1
     command: bash run.sh
   node2:
-    image: besu-image
+    image: besu-infra
     build:
       context: .
     container_name: node2
@@ -98,7 +98,7 @@ services:
       - GENERATE_ENODE=true
     command: bash run.sh
   node3:
-    image: besu-image
+    image: besu-infra
     build:
       context: .
     container_name: node3
@@ -138,7 +138,7 @@ services:
       - GENERATE_ENODE=true
     command: bash run.sh
   node4:
-    image: besu-image
+    image: besu-infra
     build:
       context: .
     container_name: node4

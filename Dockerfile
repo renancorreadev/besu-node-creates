@@ -21,13 +21,13 @@ WORKDIR /app
 
 # ** INSTALL HyperLeadge/besu - [ v23.4.0 ]
 
-RUN wget https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/23.4.0/besu-23.4.0.tar.gz
+RUN wget https://hyperledger.jfrog.io/hyperledger/besu-binaries/besu/23.4.0/besu-23.4.0.tar.gz --no-check-certificate
 RUN tar -xvzf besu-23.4.0.tar.gz
 
 RUN mv besu-23.4.0 /opt/besu
 
 # ** INSTALL JavaJDK - [ v20.0.1 ]
-RUN wget https://download.java.net/java/GA/jdk20.0.1/b4887098932d415489976708ad6d1a4b/9/GPL/openjdk-20.0.1_linux-x64_bin.tar.gz
+RUN wget https://download.java.net/java/GA/jdk20.0.1/b4887098932d415489976708ad6d1a4b/9/GPL/openjdk-20.0.1_linux-x64_bin.tar.gz --no-check-certificate
 RUN tar zxvf openjdk-20.0.1_linux-x64_bin.tar.gz -C /opt/
 ENV JAVA_HOME=/opt/jdk-20.0.1
 
